@@ -15,6 +15,7 @@ window.onload = () => {
     /**/
 
     const recipes = recipes_obj; // recipes object
+    recipe_display.children[1].innerHTML = recipes.length;
 
     /*Function for detect double-click*/
     const doubleClickThreshold = 250;

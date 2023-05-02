@@ -35,7 +35,8 @@ body {
   height: 640px;
   justify-content: center;
   align-items: center;
-  border: 1px solid green;
+  background-color: #282C35;
+  border: 2px solid red;
 }
 
 #recipe_display {
@@ -44,6 +45,7 @@ body {
   top: 0;
   align-items: center;
   height: 50px;
+  color: #fff;
   border: 1px solid red;
 }
 
@@ -67,5 +69,5 @@ body {
   background-size: contain;
   background-position: center;
   border-radius: 50%;
-  border: 1px solid black;
+  border: 1px solid #fff;
 }
