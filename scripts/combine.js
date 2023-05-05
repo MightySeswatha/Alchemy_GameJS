@@ -9,8 +9,8 @@ export class Alchemy {
 
     combine() {
         // console.log(this.el1 + "+" + this.el2 + "=result");
-        console.log(this.div1);
-        console.log(this.div2);
+        //console.log(this.div1);
+        //console.log(this.div2);
         if (this.el1 != null && this.el2 != null) {
             this.div1.remove(); 
             this.div2.remove();

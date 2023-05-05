@@ -6,6 +6,10 @@ window.onload = () => {
 
     const game_window = document.getElementById("game_window"); /*Main game window, where you create and combine elements*/
     const recipe_display = document.getElementById("recipe_display"); /*Display, that shows opened recipes*/
+    const recipe_list = document.getElementById("recipe_list"); /*Available recipes*/
+
+    const recipes = recipes_obj; // recipes object
+    recipe_display.children[1].innerHTML = recipes.length;
 
     /*Clear gameboard*/
     btn_clear.onclick = () => {
@@ -14,8 +18,12 @@ window.onload = () => {
     }
     /**/
 
-    const recipes = recipes_obj; // recipes object
-    recipe_display.children[1].innerHTML = recipes.length;
+    /*See available recipes*/
+    btn_help.onclick = () => {
+        console.log("help");
+    }
+
+    /**/
 
     /*Function for detect double-click*/
     const doubleClickThreshold = 250;
@@ -99,44 +107,58 @@ window.onload = () => {
             if (alchemy1.el1 == recipes[i].e1 && alchemy1.el2 == recipes[i].e2 || alchemy1.el1 == recipes[i].e2 && alchemy1.el2 == recipes[i].e1) {
                 if (recipes[i].created == false) {
                     recipe_display.children[0].innerHTML = Number(recipe_display.children[0].innerHTML) + 1;
+                    /*Add opened recipes at menu display*/
+                    var img1 = document.createElement("div");
+                    var img2 = document.createElement("div");
+                    var img3 = document.createElement("div");
+                    img1.classList.add("img");
+                    img2.classList.add("img");
+                    img3.classList.add("img");
+                    img1.style.backgroundImage = `url('images/${recipes[i].e1}.svg')`;
+                    img2.style.backgroundImage = `url('images/${recipes[i].e2}.svg')`;
+                    img3.style.backgroundImage = `url('images/${recipes[i].res}.svg')`;
+                    //
+                    recipe_list.appendChild(img1);
+                    recipe_list.appendChild(img2);
+                    recipe_list.appendChild(img3);
+                    /**/
                     recipes[i].created = true;
                 }
                 if (alchemy1.combine()) {
-                var new_elem = document.createElement("div");/*Create new element*/
-                new_elem.classList.add("elem");/*Set elem class*/
-                new_elem.style.left = event.clientX - 365;
-                new_elem.style.top = event.clientY - 65;
-                new_elem.style.backgroundImage = `url('images/${recipes[i].res}.svg')`;
-                new_elem.setAttribute("name", recipes[i].res);
-                //alchemy1.el1 = null;
-                //alchemy1.el2 = null;
-                new_elem.setAttribute("draggable", true);
-                game_window.appendChild(new_elem);
-                // console.log(new_elem);
+                    var new_elem = document.createElement("div");/*Create new element*/
+                    new_elem.classList.add("elem");/*Set elem class*/
+                    new_elem.style.left = event.clientX - 365;
+                    new_elem.style.top = event.clientY - 65;
+                    new_elem.style.backgroundImage = `url('images/${recipes[i].res}.svg')`;
+                    new_elem.setAttribute("name", recipes[i].res);
+                    //alchemy1.el1 = null;
+                    //alchemy1.el2 = null;
+                    new_elem.setAttribute("draggable", true);
+                    game_window.appendChild(new_elem);
+                    // console.log(new_elem);
 
-                /*Где-то здесь ошибка!!! Ссылается на 75 строку*/
-                new_elem.ondrag = () => {
-                    func_ondrag(new_elem);
+                    new_elem.ondrag = () => {
+                        func_ondrag(new_elem);
+                    }
+
+                    new_elem.ondragend = (e) => {
+                        func_ondragend(new_elem, e);
+                    }
+                    /**/
+                    new_elem.ondragover = (e) => {
+                        e.preventDefault();
+                    }
+                    /**/
+                    new_elem.ondrop = (e) => {
+
+                        func_ondrop(new_elem, e);
+
+                    }
+
+
+                    /**/
                 }
-
-                new_elem.ondragend = (e) => {
-                    func_ondragend(new_elem, e);
-                }
-                /**/
-                new_elem.ondragover = (e) => {
-                    e.preventDefault();
-                }
-                /**/
-                new_elem.ondrop = (e) => {
-
-                    func_ondrop(new_elem, e);
-
-                }
-
-
-                /**/
             }
-        }
         };
     }
 

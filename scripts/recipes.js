@@ -162,7 +162,7 @@ export const recipes_obj = [
         created: false
     },
     {
-        e1: "sun",
+        e1: "sand",
         e2: "bug",
         res: "crab",
         created: false
@@ -330,12 +330,6 @@ export const recipes_obj = [
         created: false
     },
     {
-        e1: "fish",
-        e2: "stick",
-        res: "stingray",
-        created: false
-    },
-    {
         e1: "tree",
         e2: "brick",
         res: "house",
@@ -373,7 +367,7 @@ export const recipes_obj = [
     },
     {
         e1: "sand",
-        e2: "house",
+        e2: "horse",
         res: "camel",
         created: false
     },
