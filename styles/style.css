@@ -10,6 +10,7 @@
 }
 
 body {
+  background-color: #282C35;
   font-family: 'Inter', sans-serif;
 }
 
@@ -35,8 +36,10 @@ body {
   height: 640px;
   justify-content: center;
   align-items: center;
-  background-color: #282C35;
+  border: 1px solid#e6e6e6;
+  /*
   border: 2px solid red;
+  */
 }
 
 #recipe_display {
@@ -46,7 +49,9 @@ body {
   align-items: center;
   height: 50px;
   color: #fff;
+  /*
   border: 1px solid red;
+  */
 }
 
 /*Game Menu*/
@@ -57,7 +62,13 @@ body {
   width: 200px;
   height: 640px;
   background-color: #282C35;
+  border-left: none;
+  border-top: 1px solid#e6e6e6;
+  border-right: 1px solid#e6e6e6;
+  border-bottom: 1px solid#e6e6e6;
+  /*
   border: 1px solid blue;
+  */
 }
 
 .elem {
@@ -73,16 +84,82 @@ body {
   border: 1px solid #fff;
 }
 
+/*Clear button*/
+
+#btn_clear,
+#btn_help {
+  cursor: pointer;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  background-color: #282C35;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  transition: 1s;
+}
+
+#btn_clear:hover,
+#btn_help:hover {
+  border: 1px solid #bababa;
+}
+
+#btn_clear {
+  background-image: url("../images/delete.svg");
+}
+
+#btn_clear:hover {
+  background-image: url("../images/delete2.svg");
+}
+
+#btn_help {
+  background-image: url("../images/question.svg");
+}
+
+#btn_help:hover {
+  background-image: url("../images/question2.svg");
+}
+
 /*Recipes list*/
 
 #recipe_list {
+  box-sizing: border-box;
   display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
   height: 100%;
   color: #fff;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  /*
   border: 1px solid red;
+  */
 }
 
-.img{
+#recipe_list::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+#recipe_list::-webkit-scrollbar-track {
+  background: #282C35;
+}
+
+/* Handle */
+#recipe_list::-webkit-scrollbar-thumb {
+  background: #bababa;
+  border-radius: 15px;
+}
+
+/* Handle on hover */
+#recipe_list::-webkit-scrollbar-thumb:hover {
+  border-radius: 15px;
+  background: #4b4f5b;
+}
+
+.img {
   display: flex;
   width: 40px;
   height: 40px;
@@ -91,4 +168,35 @@ body {
   background-position: center;
   border-radius: 50%;
   border: 1px solid #fff;
+}
+
+.img2 {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  border: none;
+}
+
+.row,
+.row_btn {
+  cursor: pointer;
+  display: flex;
+  padding: 5px 2px;
+  width: 100%;
+  transition: 1s;
+  /*
+border: 1px solid red;
+*/
+}
+
+.row_btn {
+  align-items: center;
+  justify-content: center
+}
+
+.row:hover {
+  background-color: #3a404d;
 }

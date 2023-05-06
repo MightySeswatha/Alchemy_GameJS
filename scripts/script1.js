@@ -4,6 +4,12 @@ import { Alchemy } from "./combine.js";
 
 window.onload = () => {
 
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+    }
+
     const game_window = document.getElementById("game_window"); /*Main game window, where you create and combine elements*/
     const recipe_display = document.getElementById("recipe_display"); /*Display, that shows opened recipes*/
     const recipe_list = document.getElementById("recipe_list"); /*Available recipes*/
@@ -20,7 +26,16 @@ window.onload = () => {
 
     /*See available recipes*/
     btn_help.onclick = () => {
-        console.log("help");
+        var arr = [];
+        for (let i = 0; i < recipes.length; i++) {
+            if (recipes[i].created == false) { arr.push(recipes[i]); }
+        }
+
+        var mark = getRandomInt(0, 2);
+        var temp = getRandomInt(0, arr.length);
+        if (mark == 0) { alert("Try to combine " + arr[temp].e1 + " with something to get " + arr[temp].res); }
+        else { alert("Try to combine " + arr[temp].e2 + " with something to get " + arr[temp].res); }
+
     }
 
     /**/
@@ -108,19 +123,68 @@ window.onload = () => {
                 if (recipes[i].created == false) {
                     recipe_display.children[0].innerHTML = Number(recipe_display.children[0].innerHTML) + 1;
                     /*Add opened recipes at menu display*/
+                    var row = document.createElement("div");
                     var img1 = document.createElement("div");
+                    var i_plus = document.createElement("div");
                     var img2 = document.createElement("div");
+                    var i_equal = document.createElement("div");
                     var img3 = document.createElement("div");
+                    row.classList.add("row");
                     img1.classList.add("img");
+                    i_plus.classList.add("img2");
                     img2.classList.add("img");
+                    i_equal.classList.add("img2");
                     img3.classList.add("img");
                     img1.style.backgroundImage = `url('images/${recipes[i].e1}.svg')`;
+                    i_plus.style.backgroundImage = `url('images/plus.svg')`;
                     img2.style.backgroundImage = `url('images/${recipes[i].e2}.svg')`;
+                    i_equal.style.backgroundImage = `url('images/equal.svg')`;
                     img3.style.backgroundImage = `url('images/${recipes[i].res}.svg')`;
                     //
-                    recipe_list.appendChild(img1);
-                    recipe_list.appendChild(img2);
-                    recipe_list.appendChild(img3);
+                    row.appendChild(img1);
+                    row.appendChild(i_plus);
+                    row.appendChild(img2);
+                    row.appendChild(i_equal);
+                    row.appendChild(img3);
+                    row.setAttribute("data", recipes[i].res);
+                    row.onclick = () => {
+                        console.log(row.getAttribute("data"));
+                        /*Add new element on game board*/
+                        var new_elem = document.createElement("div");/*Create new element*/
+                        new_elem.classList.add("elem");/*Set elem class*/
+                        new_elem.style.left = 300;
+                        new_elem.style.top = 300;
+                        new_elem.style.backgroundImage = `url('images/${row.getAttribute("data")}.svg')`;
+                        new_elem.setAttribute("name", row.getAttribute("data"));
+                        //alchemy1.el1 = null;
+                        //alchemy1.el2 = null;
+                        new_elem.setAttribute("draggable", true);
+                        game_window.appendChild(new_elem);
+                        // console.log(new_elem);
+
+                        new_elem.ondrag = () => {
+                            func_ondrag(new_elem);
+                        }
+
+                        new_elem.ondragend = (e) => {
+                            func_ondragend(new_elem, e);
+                        }
+                        /**/
+                        new_elem.ondragover = (e) => {
+                            e.preventDefault();
+                        }
+                        /**/
+                        new_elem.ondrop = (e) => {
+
+                            func_ondrop(new_elem, e);
+
+                        }
+                        /**/
+                    }
+                    /**/
+
+
+                    recipe_list.appendChild(row);
                     /**/
                     recipes[i].created = true;
                 }
