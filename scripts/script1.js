@@ -1,17 +1,13 @@
 import { Clear } from "../scripts/clear.js";
+import { Help } from "../scripts/help.js";
 import { recipes_obj } from "../scripts/recipes.js";
 import { Alchemy } from "./combine.js";
 
 window.onload = () => {
 
-    function getRandomInt(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
-    }
-
     const game_window = document.getElementById("game_window"); /*Main game window, where you create and combine elements*/
     const recipe_display = document.getElementById("recipe_display"); /*Display, that shows opened recipes*/
+    const help_display = document.getElementById("help_display"); /*Display for help with new recipes*/
     const recipe_list = document.getElementById("recipe_list"); /*Available recipes*/
 
     const recipes = recipes_obj; // recipes object
@@ -26,21 +22,14 @@ window.onload = () => {
 
     /*See available recipes*/
     btn_help.onclick = () => {
-        var arr = [];
-        for (let i = 0; i < recipes.length; i++) {
-            if (recipes[i].created == false) { arr.push(recipes[i]); }
-        }
-
-        var mark = getRandomInt(0, 2);
-        var temp = getRandomInt(0, arr.length);
-        if (mark == 0) { alert("Try to combine " + arr[temp].e1 + " with something to get " + arr[temp].res); }
-        else { alert("Try to combine " + arr[temp].e2 + " with something to get " + arr[temp].res); }
-
+        var help = new Help();
+        help.see_help(help_display, recipes);
     }
-
     /**/
 
     /*Function for detect double-click*/
+
+
     const doubleClickThreshold = 250;
     function createClicker(clickFn, dblClickFn) {
         let timer;
@@ -66,7 +55,7 @@ window.onload = () => {
     game_window.onclick = clickHandler;
 
     function onClick(event) {
-        /*Nothing*/
+
     }
 
     /*Add all listeners*/
@@ -107,9 +96,12 @@ window.onload = () => {
     */
 
     function func_ondragend(elem, event) {
-        if (event.clientX >= 360 && event.clientX <= 960 && event.clientY >= 65 && event.clientY <= 665 && elem != undefined) {
-            elem.style.left = event.clientX - 365;
-            elem.style.top = event.clientY - 65;
+        var c = game_window.getBoundingClientRect(); //Get coordinates of gameboard
+        console.log(c);
+        //console.log(c.top);
+        if (event.clientX >= c.left + 20 && event.clientX <= c.right - 20 && event.clientY >= c.top + 20 && event.clientY <= c.bottom - 20 && elem != undefined) {
+            elem.style.left = event.clientX - c.x - 15;
+            elem.style.top = event.clientY - c.y - 15;
         }
     }
 
@@ -152,8 +144,9 @@ window.onload = () => {
                         /*Add new element on game board*/
                         var new_elem = document.createElement("div");/*Create new element*/
                         new_elem.classList.add("elem");/*Set elem class*/
-                        new_elem.style.left = 300;
-                        new_elem.style.top = 300;
+                        var c = game_window.getBoundingClientRect(); //Get coordinates of gameboard
+                        new_elem.style.left = c.width / 2;
+                        new_elem.style.top = c.height / 2;
                         new_elem.style.backgroundImage = `url('images/${row.getAttribute("data")}.svg')`;
                         new_elem.setAttribute("name", row.getAttribute("data"));
                         //alchemy1.el1 = null;
@@ -191,8 +184,11 @@ window.onload = () => {
                 if (alchemy1.combine()) {
                     var new_elem = document.createElement("div");/*Create new element*/
                     new_elem.classList.add("elem");/*Set elem class*/
-                    new_elem.style.left = event.clientX - 365;
-                    new_elem.style.top = event.clientY - 65;
+                    var c = game_window.getBoundingClientRect();
+                    new_elem.style.left = event.clientX - c.x - 15;
+                    new_elem.style.top = event.clientY - c.y - 15;
+                    //elem.style.left = event.clientX - c.x-15;
+                    //elem.style.top = event.clientY - c.y-15;
                     new_elem.style.backgroundImage = `url('images/${recipes[i].res}.svg')`;
                     new_elem.setAttribute("name", recipes[i].res);
                     //alchemy1.el1 = null;
@@ -228,8 +224,6 @@ window.onload = () => {
 
     /*Class for alchemy element*/
 
-
-
     var alchemy1 = new Alchemy(null, null, null, null);
 
     function onDoubleClick(event) {
@@ -263,35 +257,9 @@ window.onload = () => {
                 }
                 elem.setAttribute("draggable", true);
                 event_add(elem);
-                /*
-
-                elem.ondrag = () => {
-                    func_ondrag(elem);
-                }
-
-                elem.ondragend = (e) => {
-                    func_ondragend(elem, e);
-                }
-
-                elem.ondragover = (e) => {
-                    e.preventDefault();
-                }
-
-                elem.ondrop = (e) => {
-
-                    func_ondrop(elem, e);
-
-                }
-
-                */
 
                 game_window.appendChild(elem);/*Add elements on game_window*/
             }
-            /*Переделать функцию перетаскивания элементов (Вместо координат экрана брать область игрового поля)*/
-            /**/
-
-
-            /**/
 
         }
     }
