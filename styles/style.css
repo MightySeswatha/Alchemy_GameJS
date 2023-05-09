@@ -14,8 +14,6 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
-/*Main Window*/
-
 #main_window {
   display: flex;
   position: absolute;
@@ -27,19 +25,9 @@ body {
   justify-content: center;
 }
 
-/*Game Window*/
-
 #game_window {
   display: flex;
   position: relative;
-  width: 640px;
-  height: 640px;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid#e6e6e6;
-  /*
-  border: 2px solid red;
-  */
 }
 
 #recipe_display {
@@ -47,11 +35,7 @@ body {
   display: flex;
   top: 0;
   align-items: center;
-  height: 50px;
   color: #fff;
-  /*
-  border: 1px solid red;
-  */
 }
 
 #help_display {
@@ -59,63 +43,12 @@ body {
   display: flex;
   bottom: 0;
   align-items: center;
-  height: 50px;
   color: #fff;
-  /*
-  border: 1px solid red;
-  */
 }
-
-/*Game Menu*/
 
 #game_menu {
   display: flex;
-  flex-direction: column;
-  width: 200px;
-  height: 640px;
   background-color: #282C35;
-  border-left: none;
-  border-top: 1px solid#e6e6e6;
-  border-right: 1px solid#e6e6e6;
-  border-bottom: 1px solid#e6e6e6;
-  /*
-  border: 1px solid blue;
-  */
-}
-
-.elem {
-  cursor: pointer;
-  display: flex;
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  border-radius: 50%;
-  border: 1px solid #fff;
-}
-
-/*Clear button*/
-
-#btn_clear,
-#btn_help {
-  cursor: pointer;
-  display: flex;
-  width: 40px;
-  height: 40px;
-  background-color: #282C35;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  border-radius: 50%;
-  border: 1px solid #fff;
-  transition: 1s;
-}
-
-#btn_clear:hover,
-#btn_help:hover {
-  border: 1px solid #bababa;
 }
 
 #btn_clear {
@@ -134,74 +67,39 @@ body {
   background-image: url("../images/question2.svg");
 }
 
-/*Recipes list*/
-
 #recipe_list {
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
   height: 100%;
   color: #fff;
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
-  /*
-  border: 1px solid red;
-  */
 }
 
 #recipe_list::-webkit-scrollbar {
   width: 10px;
 }
 
-/* Track */
 #recipe_list::-webkit-scrollbar-track {
   background: #282C35;
 }
 
-/* Handle */
 #recipe_list::-webkit-scrollbar-thumb {
   background: #bababa;
   border-radius: 15px;
 }
 
-/* Handle on hover */
 #recipe_list::-webkit-scrollbar-thumb:hover {
   border-radius: 15px;
   background: #4b4f5b;
-}
-
-.img {
-  display: flex;
-  width: 40px;
-  height: 40px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  border-radius: 50%;
-  border: 1px solid #fff;
-}
-
-.img2 {
-  display: flex;
-  width: 40px;
-  height: 40px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  border: none;
 }
 
 .row,
 .row_btn {
   cursor: pointer;
   display: flex;
+  justify-content: space-around;
   padding: 5px 2px;
   width: 100%;
   transition: 1s;
-  /*
-border: 1px solid red;
-*/
 }
 
 .row_btn {
@@ -211,4 +109,440 @@ border: 1px solid red;
 
 .row:hover {
   background-color: #3a404d;
+}
+
+#btn_clear,
+#btn_help {
+  cursor: pointer;
+  display: flex;
+  background-color: #282C35;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  border-radius: 50%;
+  transition: 1s;
+}
+
+.img {
+  display: flex;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  border-radius: 50%;
+}
+
+.img2 {
+  display: flex;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  border: none;
+}
+
+.elem {
+  cursor: pointer;
+  display: flex;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Responsive desing (native CSS)*/
+
+@media screen and (min-width: 279px) and (max-width: 320px) {
+
+  body {
+    background-color: red;
+  }
+
+}
+
+@media screen and (min-width: 321px) and (max-width: 480px) {
+
+  body {
+    background-color: green;
+  }
+
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+
+  body {
+    background-color: blue;
+  }
+
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+
+  body {
+    font-size: 1.1em;
+  }
+
+  #game_window {
+    width: 460px;
+    height: 460px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid#e6e6e6;
+  }
+
+  #help_display,
+  #recipe_display {
+    height: 45px;
+  }
+
+  #game_menu {
+    width: 230px;
+    height: 460px;
+    flex-direction: column;
+    border-left: none;
+    border-top: 1px solid#e6e6e6;
+    border-right: 1px solid#e6e6e6;
+    border-bottom: 1px solid#e6e6e6;
+  }
+
+  #btn_clear:hover,
+  #btn_help:hover {
+    border: 1px solid #bababa;
+  }
+
+  #recipe_list {
+    flex-direction: column;
+    overflow-y: scroll;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+  }
+
+  .elem {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #fff;
+  }
+
+  #btn_clear,
+  #btn_help {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #fff;
+  }
+
+  .img {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #fff;
+  }
+
+  .img2 {
+    width: 32px;
+    height: 32px;
+  }
+
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1280px) {
+
+  body {
+    font-size: 1.25em;
+  }
+
+  #game_window {
+    width: 600px;
+    height: 600px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid#e6e6e6;
+  }
+
+  #help_display,
+  #recipe_display {
+    height: 50px;
+  }
+
+  #game_menu {
+    width: 270px;
+    height: 600px;
+    flex-direction: column;
+    border-left: none;
+    border-top: 1px solid#e6e6e6;
+    border-right: 1px solid#e6e6e6;
+    border-bottom: 1px solid#e6e6e6;
+  }
+
+  #btn_clear:hover,
+  #btn_help:hover {
+    border: 1px solid #bababa;
+  }
+
+  #recipe_list {
+    flex-direction: column;
+    overflow-y: scroll;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+  }
+
+  .elem {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #fff;
+  }
+
+  #btn_clear,
+  #btn_help {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #fff;
+  }
+
+  .img {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #fff;
+  }
+
+  .img2 {
+    width: 40px;
+    height: 40px;
+  }
+
+}
+
+
+
+/*For 1281px-1600px screen*/
+@media screen and (min-width: 1281px) and (max-width: 1600px) {
+
+  body {
+    font-size: 1.4em;
+  }
+
+  #game_window {
+    width: 680px;
+    height: 680px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid#e6e6e6;
+  }
+
+  #help_display,
+  #recipe_display {
+    height: 55px;
+  }
+
+  #game_menu {
+    width: 300px;
+    height: 680px;
+    flex-direction: column;
+    border-left: none;
+    border-top: 1px solid#e6e6e6;
+    border-right: 1px solid#e6e6e6;
+    border-bottom: 1px solid#e6e6e6;
+  }
+
+  #btn_clear:hover,
+  #btn_help:hover {
+    border: 1px solid #bababa;
+  }
+
+  #recipe_list {
+    flex-direction: column;
+    overflow-y: scroll;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+  }
+
+  .elem {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #fff;
+  }
+
+  #btn_clear,
+  #btn_help {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #fff;
+  }
+
+  .img {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #fff;
+  }
+
+  .img2 {
+    width: 48px;
+    height: 48px;
+  }
+
+}
+
+
+
+
+
+
+/*For 1601-1920px screen*/
+@media screen and (min-width: 1601px) and (max-width: 1920px) {
+
+  body {
+    font-size: 1.75em;
+  }
+
+  #game_window {
+    width: 960px;
+    height: 960px;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid#e6e6e6;
+  }
+
+  #help_display,
+  #recipe_display {
+    height: 67px;
+  }
+
+  #game_menu {
+    width: 380px;
+    height: 960px;
+    flex-direction: column;
+    border-left: none;
+    border-top: 2px solid#e6e6e6;
+    border-right: 2px solid#e6e6e6;
+    border-bottom: 2px solid#e6e6e6;
+  }
+
+  #btn_clear:hover,
+  #btn_help:hover {
+    border: 2px solid #bababa;
+  }
+
+  #recipe_list {
+    flex-direction: column;
+    overflow-y: scroll;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+  }
+
+  .elem {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #fff;
+  }
+
+  #btn_clear,
+  #btn_help {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #fff;
+  }
+
+  .img {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #fff;
+  }
+
+  .img2 {
+    width: 60px;
+    height: 60px;
+  }
+
+}
+
+
+
+
+
+/*For 1920px+ screen*/
+@media screen and (min-width: 1921px) {
+
+  body {
+    font-size: 2em;
+  }
+
+  #game_window {
+    width: 1024px;
+    height: 1024px;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid#e6e6e6;
+  }
+
+  #help_display,
+  #recipe_display {
+    height: 70px;
+  }
+
+  #game_menu {
+    width: 400px;
+    height: 1024px;
+    flex-direction: column;
+    border-left: none;
+    border-top: 2px solid#e6e6e6;
+    border-right: 2px solid#e6e6e6;
+    border-bottom: 2px solid#e6e6e6;
+  }
+
+  #btn_clear:hover,
+  #btn_help:hover {
+    border: 2px solid #bababa;
+  }
+
+  #recipe_list {
+    flex-direction: column;
+    overflow-y: scroll;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+  }
+
+  .elem {
+    width: 64px;
+    height: 64px;
+    border: 2px solid #fff;
+  }
+
+  #btn_clear,
+  #btn_help {
+    width: 64px;
+    height: 64px;
+    border: 2px solid #fff;
+  }
+
+  .img {
+    width: 64px;
+    height: 64px;
+    border: 2px solid #fff;
+  }
+
+  .img2 {
+    width: 64px;
+    height: 64px;
+  }
+
 }

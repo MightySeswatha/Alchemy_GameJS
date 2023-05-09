@@ -1,6 +1,6 @@
-import { Clear } from "../scripts/clear.js";
-import { Help } from "../scripts/help.js";
-import { recipes_obj } from "../scripts/recipes.js";
+import { Clear } from "./clear.js";
+import { Help } from "./help.js";
+import { recipes_obj } from "./recipes.js";
 import { Alchemy } from "./combine.js";
 
 window.onload = () => {
