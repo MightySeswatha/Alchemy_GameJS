@@ -4,7 +4,6 @@ export class Clear {
         while (document.getElementsByClassName("elem").length != 0) {
             document.getElementsByClassName("elem")[0].remove();
         }
-
     }
 
 }

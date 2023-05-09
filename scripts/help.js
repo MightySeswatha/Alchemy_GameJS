@@ -6,7 +6,7 @@ export class Help {
         return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
     }
 
-    see_help(parent,recipes) {
+    see_help(parent, recipes) {
         var arr = [];
         for (let i = 0; i < recipes.length; i++) {
             if (recipes[i].created == false) { arr.push(recipes[i]); }
