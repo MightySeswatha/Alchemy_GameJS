@@ -110,6 +110,8 @@ window.onload = () => {
     /*Add all listeners*/
 
     function event_add(elem) {
+
+        var c = game_window.getBoundingClientRect();
         /*
                 elem.addEventListener('touchmove', function (e) {
                     var touchLocation = e.targetTouches[0];
@@ -123,28 +125,35 @@ window.onload = () => {
                 })
         */
 
+        if (c.width > 1280) {
+            elem.ondrag = () => {
+                func_ondrag(elem);
+            }
 
-        elem.ondrag = () => {
-            func_ondrag(elem);
+            elem.ondragend = (e) => {
+                func_ondragend(elem, e);
+            }
+
+            elem.ondragover = (e) => {
+                e.preventDefault();
+            }
+
+            elem.ondrop = (e) => {
+
+                func_ondrop(elem, e);
+
+            }
         }
 
+        else {
 
-        elem.addEventListener('touchmove', (e) => {
-            func_ontouch(elem, e);
-        })
+            elem.addEventListener('touchmove', (e) => {
+                func_ontouch(elem, e);
+            })
 
-
-        elem.ondragend = (e) => {
-            func_ondragend(elem, e);
-        }
-
-        elem.ondragover = (e) => {
-            e.preventDefault();
-        }
-
-        elem.ondrop = (e) => {
-
-            func_ondrop(elem, e);
+            elem.addEventListener('touchend', function (e) {
+                func_ontouchend(elem, e);
+            })
 
         }
 
@@ -156,16 +165,6 @@ window.onload = () => {
     function func_ondrag(elem) {
         alchemy1.el1 = elem.getAttribute("name");
         alchemy1.div1 = elem;
-    }
-
-    //For mobile phones
-    function func_ontouch(elem, e) {
-        alchemy1.el1 = elem.getAttribute("name");
-        alchemy1.div1 = elem;
-        let touchLocation = e.targetTouches[0];
-        currentElementId = currentElement.id;
-        elem.style.left = touchLocation.pageX + 'px';
-        elem.style.top = touchLocation.pageY + 'px';
     }
 
     function func_ondragend(elem, event) {
@@ -226,21 +225,7 @@ window.onload = () => {
                         })
                         */
 
-                        new_elem.ondrag = () => {
-                            func_ondrag(new_elem);
-                        }
-
-                        new_elem.ondragend = (e) => {
-                            func_ondragend(new_elem, e);
-                        }
-                        new_elem.ondragover = (e) => {
-                            e.preventDefault();
-                        }
-                        new_elem.ondrop = (e) => {
-
-                            func_ondrop(new_elem, e);
-
-                        }
+                        event_add(new_elem);
                     }
                     recipe_list.appendChild(row);
                     recipes[i].created = true;
@@ -262,24 +247,35 @@ window.onload = () => {
                     })
                     */
 
-                    new_elem.ondrag = () => {
-                        func_ondrag(new_elem);
-                    }
+                    event_add(new_elem);
 
-                    new_elem.ondragend = (e) => {
-                        func_ondragend(new_elem, e);
-                    }
-                    new_elem.ondragover = (e) => {
-                        e.preventDefault();
-                    }
-                    new_elem.ondrop = (e) => {
-
-                        func_ondrop(new_elem, e);
-
-                    }
                 }
             }
         };
     }
     /**/
+
+    //For mobile phones                
+    function func_ontouch(elem, e) {
+        alchemy1.el1 = elem.getAttribute("name");
+        alchemy1.div1 = elem;
+        let touchLocation = e.targetTouches[0];
+        currentElementId = currentElement.id;
+        elem.style.left = touchLocation.pageX + 'px';
+        elem.style.top = touchLocation.pageY + 'px';
+    }
+
+    function func_ontouchend(elem, e) {
+        console.log(currentElementId)
+        var x = parseInt(elem.style.left);
+        var y = parseInt(elem.style.top);
+        var c = game_window.getBoundingClientRect(); //Get coordinates of gameboard
+        if (e.clientX >= c.left + 20 && e.clientX <= c.right - 20 && e.clientY >= c.top + 20 && e.clientY <= c.bottom - 20 && elem != undefined) {
+            // elem.style.left = e.clientX - c.x - 15;
+            // elem.style.top = e.clientY - c.y - 15;
+            elem.style.left = x;
+            elem.style.top = y;
+        }
+    }
+
 }
