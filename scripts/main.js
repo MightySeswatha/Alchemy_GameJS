@@ -53,8 +53,8 @@ window.onload = () => {
     function onDoubleClick(event) {
         var c = game_window.getBoundingClientRect();
         var x = 90;
-        if (c.width < 600) {
-            console.log("test");
+        if (c.width < 400) {
+            x = 60;
         }
         if (event.offsetX <= c.width - x && event.offsetY <= c.height - 90 && event.offsetY >= 90) {
             for (let i = 0; i < 4; i++) {
