@@ -149,7 +149,7 @@ window.onload = () => {
         else {
 
             //console.log("test");
-            console.log(c.width);
+            //console.log(c.width);
 
             elem.addEventListener('touchmove', (e) => {
                 func_ontouch(elem, e);
@@ -274,13 +274,13 @@ window.onload = () => {
         alchemy1.el1 = elem.getAttribute("name");
         alchemy1.div1 = elem;
         let touchLocation = e.targetTouches[0];
-        currentElementId = currentElement.id;
+        //currentElementId = currentElement.id;
         elem.style.left = touchLocation.pageX + 'px';
         elem.style.top = touchLocation.pageY + 'px';
     }
 
     function func_ontouchend(elem, e) {
-        console.log(currentElementId)
+        //console.log(currentElementId)
         var x = parseInt(elem.style.left);
         var y = parseInt(elem.style.top);
         var c = game_window.getBoundingClientRect(); //Get coordinates of gameboard
