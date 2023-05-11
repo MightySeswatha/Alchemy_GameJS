@@ -155,6 +155,16 @@ window.onload = () => {
                 func_ontouchend(elem, e);
             })
 
+            elem.ondragover = (e) => {
+                e.preventDefault();
+            }
+
+            elem.ondrop = (e) => {
+
+                func_ondrop(elem, e);
+
+            }
+
         }
 
     }
