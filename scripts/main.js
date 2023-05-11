@@ -111,7 +111,7 @@ window.onload = () => {
 
     function event_add(elem) {
 
-        var c = game_window.getBoundingClientRect();
+        var c = game_window.parentElement.getBoundingClientRect();
         /*
                 elem.addEventListener('touchmove', function (e) {
                     var touchLocation = e.targetTouches[0];
@@ -126,6 +126,7 @@ window.onload = () => {
         */
 
         if (c.width > 1280) {
+            //console.log("test2");
             elem.ondrag = () => {
                 func_ondrag(elem);
             }
@@ -146,6 +147,9 @@ window.onload = () => {
         }
 
         else {
+
+            //console.log("test");
+            console.log(c.width);
 
             elem.addEventListener('touchmove', (e) => {
                 func_ontouch(elem, e);
