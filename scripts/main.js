@@ -275,18 +275,18 @@ window.onload = () => {
         alchemy1.div1 = elem;
         let touchLocation = e.targetTouches[0];
         //currentElementId = currentElement.id;
-        elem.style.left = touchLocation.pageX + 'px';
-        elem.style.top = touchLocation.pageY + 'px';
+        var c = game_window.getBoundingClientRect(); //Get coordinates of gameboard
+        if (touchLocation.pageX > c.x && touchLocation.pageX < c.width - 40 && touchLocation.pageY > c.y && touchLocation.pageY < c.height - 40 && elem != undefined) {
+            elem.style.left = touchLocation.pageX + 'px';
+            elem.style.top = touchLocation.pageY + 'px';
+        }
     }
 
     function func_ontouchend(elem, e) {
-        //console.log(currentElementId)
         var x = parseInt(elem.style.left);
         var y = parseInt(elem.style.top);
         var c = game_window.getBoundingClientRect(); //Get coordinates of gameboard
-        if (e.clientX >= c.left + 20 && e.clientX <= c.right - 20 && e.clientY >= c.top + 20 && e.clientY <= c.bottom - 20 && elem != undefined) {
-            // elem.style.left = e.clientX - c.x - 15;
-            // elem.style.top = e.clientY - c.y - 15;
+        if (x > c.x && x < c.width && y > c.y && y < c.height - 40 && elem != undefined) {
             elem.style.left = x;
             elem.style.top = y;
         }
