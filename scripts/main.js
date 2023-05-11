@@ -51,7 +51,9 @@ window.onload = () => {
     }
 
     function onDoubleClick(event) {
-        if (event.offsetX <= 550 && event.offsetY <= 600 && event.offsetY >= 50) {
+        var c = game_window.getBoundingClientRect();
+        // console.log(c);
+        if (event.offsetX <= c.width - 90 && event.offsetY <= c.height - 90 && event.offsetY >= 90) {
             for (let i = 0; i < 4; i++) {
                 var elem = document.createElement("div"); //Create new element
                 elem.classList.add("elem"); //Set elem class
@@ -80,6 +82,7 @@ window.onload = () => {
                     elem.setAttribute("name", "air");
                 }
                 elem.setAttribute("draggable", true);
+
                 event_add(elem);
                 game_window.appendChild(elem); //Add elements on game_window
             }
@@ -99,6 +102,32 @@ window.onload = () => {
     /*Add all listeners*/
 
     function event_add(elem) {
+
+        /*
+                    elem.addEventListener('touchmove', function (e) {
+                        var touchLocation = e.targetTouches[0];
+                        elem.style.left = touchLocation.pageX + 'px';
+                        elem.style.top = touchLocation.pageY + 'px';
+                    });
+        */
+
+        /*
+                elem.addEventListener('touchend', function (e) {
+                 var x = parseInt(elem.style.left);
+                 var y = parseInt(elem.style.top);
+                 })
+        */
+
+        elem.addEventListener('touchmove', function (e) {
+            var touchLocation = e.targetTouches[0];
+            elem.style.left = touchLocation.pageX + 'px';
+            elem.style.top = touchLocation.pageY + 'px';
+        });
+
+        elem.addEventListener('touchend', function (e) {
+            var x = parseInt(elem.style.left);
+            var y = parseInt(elem.style.top);
+        })
 
         elem.ondrag = () => {
             func_ondrag(elem);
