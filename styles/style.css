@@ -31,6 +31,7 @@ body {
 }
 
 #recipe_display {
+  user-select: none;
   position: absolute;
   display: flex;
   top: 0;
@@ -39,6 +40,7 @@ body {
 }
 
 #help_display {
+  user-select: none;
   position: absolute;
   display: flex;
   bottom: 0;
@@ -96,7 +98,7 @@ body {
 .row_btn {
   cursor: pointer;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   padding: 5px 2px;
   width: 100%;
   transition: 1s;
