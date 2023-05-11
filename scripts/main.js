@@ -122,9 +122,17 @@ window.onload = () => {
                     var y = parseInt(elem.style.top);
                 })
         */
+
+
         elem.ondrag = () => {
             func_ondrag(elem);
         }
+
+
+        elem.addEventListener('touchmove', (e) => {
+            func_ontouch(elem, e);
+        })
+
 
         elem.ondragend = (e) => {
             func_ondragend(elem, e);
@@ -144,9 +152,20 @@ window.onload = () => {
 
     /*Functions for drag&drop*/
 
+
     function func_ondrag(elem) {
         alchemy1.el1 = elem.getAttribute("name");
         alchemy1.div1 = elem;
+    }
+
+    //For mobile phones
+    function func_ontouch(elem, e) {
+        alchemy1.el1 = elem.getAttribute("name");
+        alchemy1.div1 = elem;
+        let touchLocation = e.targetTouches[0];
+        currentElementId = currentElement.id;
+        elem.style.left = touchLocation.pageX + 'px';
+        elem.style.top = touchLocation.pageY + 'px';
     }
 
     function func_ondragend(elem, event) {
@@ -200,6 +219,13 @@ window.onload = () => {
                         new_elem.setAttribute("name", row.getAttribute("data"));
                         new_elem.setAttribute("draggable", true);
                         game_window.appendChild(new_elem);
+
+                        /*
+                        new_elem.addEventListener('touchmove', (e) => {
+                            func_ontouch(new_elem, e);
+                        })
+                        */
+
                         new_elem.ondrag = () => {
                             func_ondrag(new_elem);
                         }
@@ -230,9 +256,16 @@ window.onload = () => {
                     new_elem.setAttribute("draggable", true);
                     game_window.appendChild(new_elem);
 
+                    /*
+                    new_elem.addEventListener('touchmove', (e) => {
+                        func_ontouch(new_elem, e);
+                    })
+                    */
+
                     new_elem.ondrag = () => {
                         func_ondrag(new_elem);
                     }
+
                     new_elem.ondragend = (e) => {
                         func_ondragend(new_elem, e);
                     }
