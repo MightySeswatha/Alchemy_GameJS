@@ -52,10 +52,9 @@ window.onload = () => {
 
     function onDoubleClick(event) {
         var c = game_window.getBoundingClientRect();
-        // console.log(c);
         var x = 90;
         if (c.width < 600) {
-            x = 135;
+            console.log("test");
         }
         if (event.offsetX <= c.width - x && event.offsetY <= c.height - 90 && event.offsetY >= 90) {
             for (let i = 0; i < 4; i++) {
@@ -106,33 +105,18 @@ window.onload = () => {
     /*Add all listeners*/
 
     function event_add(elem) {
-
         /*
-                    elem.addEventListener('touchmove', function (e) {
-                        var touchLocation = e.targetTouches[0];
-                        elem.style.left = touchLocation.pageX + 'px';
-                        elem.style.top = touchLocation.pageY + 'px';
-                    });
-        */
-
-        /*
+                elem.addEventListener('touchmove', function (e) {
+                    var touchLocation = e.targetTouches[0];
+                    elem.style.left = touchLocation.pageX + 'px';
+                    elem.style.top = touchLocation.pageY + 'px';
+                });
+        
                 elem.addEventListener('touchend', function (e) {
-                 var x = parseInt(elem.style.left);
-                 var y = parseInt(elem.style.top);
-                 })
+                    var x = parseInt(elem.style.left);
+                    var y = parseInt(elem.style.top);
+                })
         */
-
-        elem.addEventListener('touchmove', function (e) {
-            var touchLocation = e.targetTouches[0];
-            elem.style.left = touchLocation.pageX + 'px';
-            elem.style.top = touchLocation.pageY + 'px';
-        });
-
-        elem.addEventListener('touchend', function (e) {
-            var x = parseInt(elem.style.left);
-            var y = parseInt(elem.style.top);
-        })
-
         elem.ondrag = () => {
             func_ondrag(elem);
         }
