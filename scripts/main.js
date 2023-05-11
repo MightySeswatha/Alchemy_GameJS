@@ -53,8 +53,12 @@ window.onload = () => {
     function onDoubleClick(event) {
         var c = game_window.getBoundingClientRect();
         var x = 90;
+        var x2 = 45;
         if (c.width < 400) {
-            x = 60;
+            x = 75;
+        }
+        if (c.width < 600) {
+            x2 = 30;
         }
         if (event.offsetX <= c.width - x && event.offsetY <= c.height - 90 && event.offsetY >= 90) {
             for (let i = 0; i < 4; i++) {
@@ -67,20 +71,20 @@ window.onload = () => {
                     elem.setAttribute("name", "fire");
                 }
                 else if (i == 1) {
-                    elem.style.left = event.offsetX + 45;
+                    elem.style.left = event.offsetX + x2;
                     elem.style.top = event.offsetY;
                     elem.style.backgroundImage = "url('images/water.svg')"
                     elem.setAttribute("name", "water");
                 }
                 else if (i == 2) {
-                    elem.style.left = event.offsetX + 45;
-                    elem.style.top = event.offsetY - 45;
+                    elem.style.left = event.offsetX + x2;
+                    elem.style.top = event.offsetY - x2;
                     elem.style.backgroundImage = "url('images/earth.svg')"
                     elem.setAttribute("name", "earth");
                 }
                 else if (i == 3) {
                     elem.style.left = event.offsetX;
-                    elem.style.top = event.offsetY - 45;
+                    elem.style.top = event.offsetY - x2;
                     elem.style.backgroundImage = "url('images/air.svg')"
                     elem.setAttribute("name", "air");
                 }
