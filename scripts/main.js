@@ -267,7 +267,7 @@ window.onload = () => {
             }
         };
     }
-    /**/
+    /**//**/
 
     //For mobile phones                
     function func_ontouch(elem, e) {
