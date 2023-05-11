@@ -53,7 +53,11 @@ window.onload = () => {
     function onDoubleClick(event) {
         var c = game_window.getBoundingClientRect();
         // console.log(c);
-        if (event.offsetX <= c.width - 90 && event.offsetY <= c.height - 90 && event.offsetY >= 90) {
+        var x = 90;
+        if (c.width < 600) {
+            x = 135;
+        }
+        if (event.offsetX <= c.width - x && event.offsetY <= c.height - 90 && event.offsetY >= 90) {
             for (let i = 0; i < 4; i++) {
                 var elem = document.createElement("div"); //Create new element
                 elem.classList.add("elem"); //Set elem class
