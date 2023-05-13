@@ -345,7 +345,7 @@ window.onload = () => {
                                     }
                                 };
                             }
-                            /**/
+
                             break;
                         }
                     }
