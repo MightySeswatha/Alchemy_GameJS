@@ -10,6 +10,7 @@
 }
 
 body {
+  overflow: hidden;
   background-color: #282C35;
   font-family: 'Inter', sans-serif;
 }
