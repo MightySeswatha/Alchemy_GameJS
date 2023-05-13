@@ -13,6 +13,8 @@ export class Alchemy {
             this.div2.remove();
             this.div1 = null;
             this.div2 = null;
+            this.el1 = null;
+            this.el2 = null;
             return true;
         }
         return false;

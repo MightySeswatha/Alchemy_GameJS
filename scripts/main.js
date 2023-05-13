@@ -280,70 +280,75 @@ window.onload = () => {
         var cord1 = elem.getBoundingClientRect();
         for (let i = 0; i < document.getElementsByClassName("elem").length; i++) {
             var cord2 = document.getElementsByClassName("elem")[i].getBoundingClientRect();
+            /*For x*/
             for (let j = 0; j <= Math.floor(cord2.width / 2); j++) {
                 if ((cord2.x + j == cord1.x && elem != document.getElementsByClassName("elem")[i]) || (cord2.x - j == cord1.x && elem != document.getElementsByClassName("elem")[i])) {
-                    alchemy1.el2 = document.getElementsByClassName("elem")[i].getAttribute("name");
-                    alchemy1.div2 = document.getElementsByClassName("elem")[i];
+                    /*For y*/
+                    for (let k = 0; k < Math.floor(cord2.width / 2); k++) {
+                        if (cord2.y + k == cord1.y || cord2.y - k == cord1.y) {
+                            alchemy1.el2 = document.getElementsByClassName("elem")[i].getAttribute("name");
+                            alchemy1.div2 = document.getElementsByClassName("elem")[i];
+                            for (let i = 0; i < recipes.length; i++) {
+                                if (alchemy1.el1 == recipes[i].e1 && alchemy1.el2 == recipes[i].e2 || alchemy1.el1 == recipes[i].e2 && alchemy1.el2 == recipes[i].e1) {
+                                    if (recipes[i].created == false) {
+                                        recipe_display.children[0].innerHTML = Number(recipe_display.children[0].innerHTML) + 1;
+                                        var row = document.createElement("div");
+                                        var img1 = document.createElement("div");
+                                        var i_plus = document.createElement("div");
+                                        var img2 = document.createElement("div");
+                                        var i_equal = document.createElement("div");
+                                        var img3 = document.createElement("div");
+                                        row.classList.add("row");
+                                        img1.classList.add("img");
+                                        i_plus.classList.add("img2");
+                                        img2.classList.add("img");
+                                        i_equal.classList.add("img2");
+                                        img3.classList.add("img");
+                                        img1.style.backgroundImage = `url('images/${recipes[i].e1}.svg')`;
+                                        i_plus.style.backgroundImage = `url('images/plus.svg')`;
+                                        img2.style.backgroundImage = `url('images/${recipes[i].e2}.svg')`;
+                                        i_equal.style.backgroundImage = `url('images/equal.svg')`;
+                                        img3.style.backgroundImage = `url('images/${recipes[i].res}.svg')`;
+                                        row.appendChild(img1);
+                                        row.appendChild(i_plus);
+                                        row.appendChild(img2);
+                                        row.appendChild(i_equal);
+                                        row.appendChild(img3);
+                                        row.setAttribute("data", recipes[i].res);
+                                        row.onclick = () => {
 
-                    for (let i = 0; i < recipes.length; i++) {
-                        if (alchemy1.el1 == recipes[i].e1 && alchemy1.el2 == recipes[i].e2 || alchemy1.el1 == recipes[i].e2 && alchemy1.el2 == recipes[i].e1) {
-                            if (recipes[i].created == false) {
-                                recipe_display.children[0].innerHTML = Number(recipe_display.children[0].innerHTML) + 1;
-                                var row = document.createElement("div");
-                                var img1 = document.createElement("div");
-                                var i_plus = document.createElement("div");
-                                var img2 = document.createElement("div");
-                                var i_equal = document.createElement("div");
-                                var img3 = document.createElement("div");
-                                row.classList.add("row");
-                                img1.classList.add("img");
-                                i_plus.classList.add("img2");
-                                img2.classList.add("img");
-                                i_equal.classList.add("img2");
-                                img3.classList.add("img");
-                                img1.style.backgroundImage = `url('images/${recipes[i].e1}.svg')`;
-                                i_plus.style.backgroundImage = `url('images/plus.svg')`;
-                                img2.style.backgroundImage = `url('images/${recipes[i].e2}.svg')`;
-                                i_equal.style.backgroundImage = `url('images/equal.svg')`;
-                                img3.style.backgroundImage = `url('images/${recipes[i].res}.svg')`;
-                                row.appendChild(img1);
-                                row.appendChild(i_plus);
-                                row.appendChild(img2);
-                                row.appendChild(i_equal);
-                                row.appendChild(img3);
-                                row.setAttribute("data", recipes[i].res);
-                                row.onclick = () => {
+                                            var new_elem = document.createElement("div"); //Create new element
+                                            new_elem.classList.add("elem"); //Set elem class
+                                            var c = game_window.getBoundingClientRect(); //Get coordinates of gameboard
+                                            new_elem.style.left = c.width / 2;
+                                            new_elem.style.top = c.height / 2;
+                                            new_elem.style.backgroundImage = `url('images/${row.getAttribute("data")}.svg')`;
+                                            new_elem.setAttribute("name", row.getAttribute("data"));
+                                            new_elem.setAttribute("draggable", true);
+                                            game_window.appendChild(new_elem);
+                                            event_add(new_elem);
+                                        }
+                                        recipe_list.appendChild(row);
+                                        recipes[i].created = true;
+                                    }
+                                    if (alchemy1.combine()) {
+                                        var new_elem = document.createElement("div");  //Create new element
+                                        new_elem.classList.add("elem");  //Set elem class
+                                        new_elem.style.left = cord1.x;
+                                        new_elem.style.top = cord1.y;
+                                        new_elem.style.backgroundImage = `url('images/${recipes[i].res}.svg')`;
+                                        new_elem.setAttribute("name", recipes[i].res);
+                                        new_elem.setAttribute("draggable", true);
+                                        game_window.appendChild(new_elem);
+                                        event_add(new_elem);
 
-                                    var new_elem = document.createElement("div"); //Create new element
-                                    new_elem.classList.add("elem"); //Set elem class
-                                    var c = game_window.getBoundingClientRect(); //Get coordinates of gameboard
-                                    new_elem.style.left = c.width / 2;
-                                    new_elem.style.top = c.height / 2;
-                                    new_elem.style.backgroundImage = `url('images/${row.getAttribute("data")}.svg')`;
-                                    new_elem.setAttribute("name", row.getAttribute("data"));
-                                    new_elem.setAttribute("draggable", true);
-                                    game_window.appendChild(new_elem);
-                                    event_add(new_elem);
-                                }
-                                recipe_list.appendChild(row);
-                                recipes[i].created = true;
+                                    }
+                                };
                             }
-                            if (alchemy1.combine()) {
-                                var new_elem = document.createElement("div");  //Create new element
-                                new_elem.classList.add("elem");  //Set elem class
-                                new_elem.style.left = cord1.x;
-                                new_elem.style.top = cord1.y;
-                                new_elem.style.backgroundImage = `url('images/${recipes[i].res}.svg')`;
-                                new_elem.setAttribute("name", recipes[i].res);
-                                new_elem.setAttribute("draggable", true);
-                                game_window.appendChild(new_elem);
-                                event_add(new_elem);
-
-                            }
-                        };
+                            /**/
+                            break;
+                        }
                     }
-                    /**/
-                    break;
                 }
                 else {
 
@@ -353,13 +358,16 @@ window.onload = () => {
                     alchemy1.el1 = null;
                     alchemy1.div1 = null;
                     */
+
                 }
             }
         }
+
+
         console.log(alchemy1.div1);
+        console.log(alchemy1.el1);
         console.log(alchemy1.div2);
-
-
+        console.log(alchemy1.el2);
 
         /**/
     }
