@@ -245,7 +245,7 @@ body {
 @media screen and (min-width: 321px) and (max-width: 480px) {
 
   body {
-    font-size: 3vw;
+    font-size: 5vw;
   }
 
   #main_window {
@@ -332,7 +332,7 @@ body {
 @media screen and (min-width: 481px) and (max-width: 768px) {
 
   body {
-    font-size: 3vw;
+    font-size: 5vw;
   }
 
   #main_window {
@@ -421,7 +421,7 @@ body {
 @media screen and (min-width: 769px) and (max-width: 1023px) {
 
   body {
-    font-size: 3vw;
+    font-size: 5vw;
   }
 
   #main_window {

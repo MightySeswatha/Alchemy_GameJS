@@ -4,6 +4,7 @@ import { recipes_obj } from "./recipes.js";
 import { Alchemy } from "./combine.js";
 
 window.onload = () => {
+
     const game_window = document.getElementById("game_window"); /*Main game window, where you create and combine elements*/
     const recipe_display = document.getElementById("recipe_display"); //Display, that shows opened recipes
     const help_display = document.getElementById("help_display"); //Display for help with new recipes
@@ -371,5 +372,15 @@ window.onload = () => {
 
         /**/
     }
+
+    function reportWindowSize() {
+        for (let i = 0; i < document.getElementsByClassName("elem").length; i++) {
+            var c = game_window.getBoundingClientRect(); //Get coordinates of gameboard
+            document.getElementsByClassName("elem")[i].style.left = c.width / 2;
+            document.getElementsByClassName("elem")[i].style.top = c.height / 2;
+        }
+    }
+
+    window.onresize = reportWindowSize;
 
 }
