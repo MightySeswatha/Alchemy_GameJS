@@ -152,6 +152,15 @@ body {
   border-radius: 50%;
 }
 
+.elem_title {
+  display: flex;
+  width: 100%;
+  position: absolute;
+  color: #fff;
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+}
 
 /*Responsive desing (native CSS)*/
 
@@ -220,6 +229,11 @@ body {
     width: 4vh;
     height: 4vh;
     border: 1px solid #fff;
+  }
+
+  .elem_title {
+    top: 4.5vw;
+    font-size: 4.5vw;
   }
 
   #btn_clear,
@@ -309,6 +323,11 @@ body {
     border: 1px solid #fff;
   }
 
+  .elem_title {
+    top: 3.8vw;
+    font-size: 4vw;
+  }
+
   #btn_clear,
   #btn_help {
     width: 5vh;
@@ -394,6 +413,11 @@ body {
     width: 4vh;
     height: 4vh;
     border: 1px solid #fff;
+  }
+
+  .elem_title {
+    top: 2.2vw;
+    font-size: 3vw;
   }
 
   #btn_clear,
@@ -485,6 +509,11 @@ body {
     border: 1px solid #fff;
   }
 
+  .elem_title {
+    top: 2.2vw;
+    font-size: 3vw;
+  }
+
   #btn_clear,
   #btn_help {
     width: 5vh;
@@ -550,6 +579,11 @@ body {
     width: 3vw;
     height: 3vw;
     border: 1px solid #fff;
+  }
+
+  .elem_title {
+    top: 1.1vw;
+    font-size: 1.5vw;
   }
 
   #btn_clear,
@@ -619,6 +653,11 @@ body {
     width: 3vw;
     height: 3vw;
     border: 1px solid #fff;
+  }
+
+  .elem_title {
+    top: 1.1vw;
+    font-size: 1.5vw;
   }
 
   #btn_clear,
@@ -693,6 +732,11 @@ body {
     border: 1px solid #fff;
   }
 
+  .elem_title {
+    top: 1.1vw;
+    font-size: 1.5vw;
+  }
+
   #btn_clear,
   #btn_help {
     width: 3vw;
@@ -758,6 +802,11 @@ body {
     width: 3vw;
     height: 3vw;
     border: 1px solid #fff;
+  }
+
+  .elem_title {
+    top: 1.1vw;
+    font-size: 1.5vw;
   }
 
   #btn_clear,

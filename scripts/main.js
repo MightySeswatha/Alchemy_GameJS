@@ -65,34 +65,41 @@ window.onload = () => {
         if (event.offsetX <= c.width - x && event.offsetY <= c.height - 90 && event.offsetY >= 90) {
             for (let i = 0; i < 4; i++) {
                 var elem = document.createElement("div"); //Create new element
+                var elem_title = document.createElement("p");
                 elem.classList.add("elem"); //Set elem class
+                elem_title.classList.add("elem_title");
                 if (i == 0) {
                     elem.style.left = event.offsetX;
                     elem.style.top = event.offsetY;
                     elem.style.backgroundImage = "url('images/fire.svg')"
                     elem.setAttribute("name", "fire");
+                    elem_title.innerHTML = "fire";
                 }
                 else if (i == 1) {
                     elem.style.left = event.offsetX + x2;
                     elem.style.top = event.offsetY;
                     elem.style.backgroundImage = "url('images/water.svg')"
                     elem.setAttribute("name", "water");
+                    elem_title.innerHTML = "water";
                 }
                 else if (i == 2) {
                     elem.style.left = event.offsetX + x2;
                     elem.style.top = event.offsetY - x2;
                     elem.style.backgroundImage = "url('images/earth.svg')"
                     elem.setAttribute("name", "earth");
+                    elem_title.innerHTML = "earth";
                 }
                 else if (i == 3) {
                     elem.style.left = event.offsetX;
                     elem.style.top = event.offsetY - x2;
                     elem.style.backgroundImage = "url('images/air.svg')"
                     elem.setAttribute("name", "air");
+                    elem_title.innerHTML = "air";
                 }
                 elem.setAttribute("draggable", true);
 
                 event_add(elem);
+                elem.appendChild(elem_title);
                 game_window.appendChild(elem); //Add elements on game_window
             }
 
@@ -225,13 +232,17 @@ window.onload = () => {
                     row.onclick = () => {
                         /*Add new element on game board*/
                         var new_elem = document.createElement("div"); //Create new element
+                        var new_elem_title = document.createElement("p");
                         new_elem.classList.add("elem"); //Set elem class
+                        new_elem_title.classList.add("elem_title");
+                        new_elem.title.innerHTML = row.getAttribute("data");
                         var c = game_window.getBoundingClientRect(); //Get coordinates of gameboard
                         new_elem.style.left = c.width / 2;
                         new_elem.style.top = c.height / 2;
                         new_elem.style.backgroundImage = `url('images/${row.getAttribute("data")}.svg')`;
                         new_elem.setAttribute("name", row.getAttribute("data"));
                         new_elem.setAttribute("draggable", true);
+                        new_elem.appendChild(new_elem_title);
                         game_window.appendChild(new_elem);
                         event_add(new_elem);
                     }
@@ -240,13 +251,17 @@ window.onload = () => {
                 }
                 if (alchemy1.combine()) {
                     var new_elem = document.createElement("div");  //Create new element
+                    var new_elem_title = document.createElement("p");
                     new_elem.classList.add("elem");  //Set elem class
+                    new_elem_title.classList.add("elem_title");
+                    new_elem_title.innerHTML = row.getAttribute("data");
                     var c = game_window.getBoundingClientRect();
                     new_elem.style.left = event.clientX - c.x - 15;
                     new_elem.style.top = event.clientY - c.y - 15;
                     new_elem.style.backgroundImage = `url('images/${recipes[i].res}.svg')`;
                     new_elem.setAttribute("name", recipes[i].res);
                     new_elem.setAttribute("draggable", true);
+                    new_elem.appendChild(new_elem_title);
                     game_window.appendChild(new_elem);
                     event_add(new_elem);
 
@@ -319,13 +334,17 @@ window.onload = () => {
                                         row.onclick = () => {
 
                                             var new_elem = document.createElement("div"); //Create new element
-                                            new_elem.classList.add("elem"); //Set elem class
+                                            var new_elem_title = document.createElement("p");
+                                            new_elem.classList.add("elem");  //Set elem class
+                                            new_elem_title.classList.add("elem_title");
+                                            new_elem_title.innerHTML = row.getAttribute("data");
                                             var c = game_window.getBoundingClientRect(); //Get coordinates of gameboard
                                             new_elem.style.left = c.width / 2;
                                             new_elem.style.top = c.height / 2;
                                             new_elem.style.backgroundImage = `url('images/${row.getAttribute("data")}.svg')`;
                                             new_elem.setAttribute("name", row.getAttribute("data"));
                                             new_elem.setAttribute("draggable", true);
+                                            new_elem.appendChild(new_elem_title);
                                             game_window.appendChild(new_elem);
                                             event_add(new_elem);
                                         }
@@ -334,12 +353,16 @@ window.onload = () => {
                                     }
                                     if (alchemy1.combine()) {
                                         var new_elem = document.createElement("div");  //Create new element
+                                        var new_elem_title = document.createElement("p");
+                                        new_elem_title.classList.add("elem_title");
+                                        new_elem_title.innerHTML = row.getAttribute("data");
                                         new_elem.classList.add("elem");  //Set elem class
                                         new_elem.style.left = cord1.x;
                                         new_elem.style.top = cord1.y;
                                         new_elem.style.backgroundImage = `url('images/${recipes[i].res}.svg')`;
                                         new_elem.setAttribute("name", recipes[i].res);
                                         new_elem.setAttribute("draggable", true);
+                                        new_elem.appendChild(new_elem_title);
                                         game_window.appendChild(new_elem);
                                         event_add(new_elem);
 
@@ -378,6 +401,9 @@ window.onload = () => {
             var c = game_window.getBoundingClientRect(); //Get coordinates of gameboard
             document.getElementsByClassName("elem")[i].style.left = c.width / 2;
             document.getElementsByClassName("elem")[i].style.top = c.height / 2;
+
+            event_add(document.getElementsByClassName("elem")[i]);
+
         }
     }
 
