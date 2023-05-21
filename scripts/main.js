@@ -120,21 +120,10 @@ window.onload = () => {
     function event_add(elem) {
 
         var c = game_window.parentElement.getBoundingClientRect();
-        /*
-                elem.addEventListener('touchmove', function (e) {
-                    var touchLocation = e.targetTouches[0];
-                    elem.style.left = touchLocation.pageX + 'px';
-                    elem.style.top = touchLocation.pageY + 'px';
-                });
-        
-                elem.addEventListener('touchend', function (e) {
-                    var x = parseInt(elem.style.left);
-                    var y = parseInt(elem.style.top);
-                })
-        */
+
 
         if (c.width > 1280) {
-            //console.log("test2");
+
             elem.ondrag = () => {
                 func_ondrag(elem);
             }
@@ -235,7 +224,7 @@ window.onload = () => {
                         var new_elem_title = document.createElement("p");
                         new_elem.classList.add("elem"); //Set elem class
                         new_elem_title.classList.add("elem_title");
-                        new_elem.title.innerHTML = row.getAttribute("data");
+                        new_elem_title.innerHTML = row.getAttribute("data");
                         var c = game_window.getBoundingClientRect(); //Get coordinates of gameboard
                         new_elem.style.left = c.width / 2;
                         new_elem.style.top = c.height / 2;
